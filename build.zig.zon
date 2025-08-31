@@ -1,0 +1,26 @@
+.{
+    .name = .sdl3_dawn_example,
+    .version = "0.0.1",
+    .fingerprint = 0xa88bb5b59035acd0, // Changing this has security and trust implications.
+    .minimum_zig_version = "0.15.1",
+    .dependencies = .{
+        .sdl = .{
+            .url = "https://github.com/akunaakwei/zig-sdl3/archive/0f068c5a11fe706904f099595b0c3339914d8789.tar.gz",
+            .hash = "sdl3-3.2.16-UxR75A0LAQDdi0osZ_6qkZr205z0jxL38Vn8Ro34xmWd",
+        },
+        .dawn = .{
+            .url = "https://github.com/akunaakwei/zig-dawn/archive/1f09bef60325eaee638b173ff7b1712d76785da3.tar.gz",
+            .hash = "dawn-0.0.0-tv4w0t5LMwAsyVXI6SYkh-QxpfLkaDTcYjHThvN7tPQi",
+        },
+        .sdl3webgpu = .{
+            .url = "https://github.com/akunaakwei/zig-sdl3webgpu/archive/e2a0f32b68c5d515037605c092c15ec087bbfd42.tar.gz",
+            .hash = "zig_sdl3webgpu-0.0.1-Y5tSdQsOAADidb-qjzHrz8-3BT8BSClK7JNuk9yFSRS2",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+        "LICENSE",
+    },
+}
