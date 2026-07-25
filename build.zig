@@ -18,16 +18,15 @@ pub fn build(b: *std.Build) void {
         .SDL_RENDER_D3D11 = false,
         .SDL_VULKAN = false,
     });
-    const sdl3_mod = sdl3_dep.module("sdl3");
     const sdl3_lib = sdl3_dep.artifact("sdl3");
 
     const dawn_dep = b.dependency("dawn", .{
         .target = target,
         .optimize = optimize,
+        .linkage = .dynamic,
         .DAWN_ENABLE_VULKAN = true,
         .DAWN_FORCE_SYSTEM_COMPONENT_LOAD = true,
     });
-    const webgpu_mod = dawn_dep.module("webgpu");
     const webgpu_lib = dawn_dep.artifact("webgpu_dawn");
 
     const sdl3webgpu_dep = b.dependency("sdl3webgpu", .{
@@ -38,9 +37,22 @@ pub fn build(b: *std.Build) void {
         .webgpu_headers = webgpu_lib.getEmittedIncludeTree(),
         .webgpu_library = webgpu_lib.getEmittedBin(),
     });
-    const sdl3webgpu_mod = sdl3webgpu_dep.module("sdl3webgpu");
-    sdl3webgpu_mod.addImport("sdl3", sdl3_mod);
-    sdl3webgpu_mod.addImport("webgpu", webgpu_mod);
+    const sdl3webgpu_lib = sdl3webgpu_dep.artifact("sdl3webgpu");
+
+    const amalgamate_c = b.addWriteFile("c.h",
+        \\#include <SDL3/SDL.h>
+        \\#include <dawn/webgpu.h>
+        \\#include <sdl3webgpu.h>
+    );
+
+    const translate_c = b.addTranslateC(.{
+        .root_source_file = amalgamate_c.getDirectory().path(b, "c.h"),
+        .target = target,
+        .optimize = optimize,
+    });
+    translate_c.addIncludePath(sdl3_lib.getEmittedIncludeTree());
+    translate_c.addIncludePath(webgpu_lib.getEmittedIncludeTree());
+    translate_c.addIncludePath(sdl3webgpu_lib.getEmittedIncludeTree());
 
     const exe = b.addExecutable(.{
         .name = "example",
@@ -50,9 +62,11 @@ pub fn build(b: *std.Build) void {
             .optimize = optimize,
         }),
     });
-    exe.root_module.addImport("sdl3", sdl3_mod);
-    exe.root_module.addImport("webgpu", webgpu_mod);
-    exe.root_module.addImport("sdl3webgpu", sdl3webgpu_mod);
+    exe.root_module.linkLibrary(sdl3webgpu_lib);
+    exe.root_module.linkLibrary(sdl3_lib);
+    exe.root_module.linkLibrary(webgpu_lib);
+
+    exe.root_module.addImport("c", translate_c.createModule());
 
     b.installArtifact(exe);
 
