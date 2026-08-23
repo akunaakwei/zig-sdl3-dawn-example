@@ -9,8 +9,8 @@
             .hash = "sdl3-3.2.16-UxR75AAKAQCwUrNUH-3dNramnm-hMt0TYLq-YWJ7nlWr",
         },
         .dawn = .{
-            .url = "https://github.com/akunaakwei/zig-dawn/archive/8369f4d62328cdff1417346087e06d03fb27e446.tar.gz",
-            .hash = "dawn-0.0.0-tv4w0ofAOAAKdJafqfl_hJl5y7zMD0AXH02vR7LaRSL6",
+            .url = "https://github.com/akunaakwei/zig-dawn/archive/f93e927fd8a7682dfac122196ca70f5335a5ff5a.tar.gz",
+            .hash = "dawn-0.0.0-tv4w0h0_OQBuVdkq7Ofhsqrf8ELVQuJyzZDe9ZIfK3Pv",
         },
         .sdl3webgpu = .{
             .url = "https://github.com/akunaakwei/zig-sdl3webgpu/archive/a31452a6e07453cf0e7b0ccbd1d0d20011adf8a9.tar.gz",
