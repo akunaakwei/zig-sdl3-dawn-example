@@ -5,12 +5,12 @@
     .minimum_zig_version = "0.16.0",
     .dependencies = .{
         .sdl = .{
-            .url = "https://github.com/akunaakwei/zig-sdl3/archive/f565537ba1a4efc55fc75b27e7f780c53c8d1f5a.tar.gz",
-            .hash = "sdl3-3.2.16-UxR75AAKAQCwUrNUH-3dNramnm-hMt0TYLq-YWJ7nlWr",
+            .url = "https://github.com/akunaakwei/zig-sdl3/archive/2f5ab3c2ec4287c471a21d758d4c2899ae173ce2.tar.gz",
+            .hash = "sdl3-3.2.16-UxR75AkzAQBSxQE5SRciR69LjY6Dws6l1zyRCPszJqUz",
         },
         .dawn = .{
-            .url = "https://github.com/akunaakwei/zig-dawn/archive/f93e927fd8a7682dfac122196ca70f5335a5ff5a.tar.gz",
-            .hash = "dawn-0.0.0-tv4w0h0_OQBuVdkq7Ofhsqrf8ELVQuJyzZDe9ZIfK3Pv",
+            .url = "https://github.com/akunaakwei/zig-dawn/archive/3ad9732905a19a3ea84a1f9b80a8b42e103ac60e.tar.gz",
+            .hash = "dawn-0.0.0-tv4w0rpAOQAy2alBK0qPJ5xY4-b9BsTqYFloAGZWauUM",
         },
         .sdl3webgpu = .{
             .url = "https://github.com/akunaakwei/zig-sdl3webgpu/archive/a31452a6e07453cf0e7b0ccbd1d0d20011adf8a9.tar.gz",
